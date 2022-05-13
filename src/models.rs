@@ -7,6 +7,11 @@ pub struct Status {
     pub message: String,
 }
 
+#[derive(Deserialize)]
+pub struct UpdateParams {
+    pub id: i32,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TodoList {
     pub id: Option<i32>,

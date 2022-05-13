@@ -28,12 +28,10 @@ async fn main() -> std::io::Result<()> {
             .route("/", web::get().to(status))
             .route("/todo_list", web::get().to(get_todo_list))
             .route("/todo_list", web::post().to(create_todo_list))
+            .route("/todo_list/{id}", web::patch().to(update_todo_list))
+            .route("/todo_list/{id}", web::delete().to(delete_todo_list))
     })
         .bind(format!("{}:{}", &config.server.host, &config.server.port))?
         .run()
         .await
 }
-
-
-// generate CURL in powershell for create_todo_list
-//  Invoke-WebRequest -URI 'http://localhost:8080/todo_list' -Method POST -Body '{"title": "test"}'
