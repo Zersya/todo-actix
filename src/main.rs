@@ -28,8 +28,14 @@ async fn main() -> std::io::Result<()> {
             .route("/", web::get().to(status))
             .route("/todo_list", web::get().to(get_todo_list))
             .route("/todo_list", web::post().to(create_todo_list))
-            .route("/todo_list/{id}", web::patch().to(update_todo_list))
-            .route("/todo_list/{id}", web::delete().to(delete_todo_list))
+            .route("/todo_list/{list_id}", web::patch().to(update_todo_list))
+            .route("/todo_list/{list_id}", web::delete().to(delete_todo_list))
+            .route("/todo_list/{list_id}/items", web::get().to(get_todo_items))
+            .route("/todo_list/{list_id}/item", web::post().to(create_todo_item))
+            .route("/todo_list/{list_id}/item/{item_id}", web::patch().to(update_todo_item))
+            .route("/todo_list/{list_id}/item/{item_id}", web::delete().to(delete_todo_item))
+
+
     })
         .bind(format!("{}:{}", &config.server.host, &config.server.port))?
         .run()
